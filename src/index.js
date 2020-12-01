@@ -1,3 +1,4 @@
 import getInput from "./util/getInput.js";
+import solvers from "./solvers";
 
-console.log(getInput(1));
+solvers.forEach((s, i) => s(getInput(i + 1)));
