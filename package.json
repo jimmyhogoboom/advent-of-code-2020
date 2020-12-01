@@ -7,11 +7,14 @@
   "license": "GPLv3",
   "private": false,
   "scripts": {
-    "start": "nodemon index"
+    "start": "babel-watch src/index"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "babel-watch": "^7.0.0",
     "eslint": "^7.14.0",
-    "nodemon": "^2.0.6",
     "prettier": "2.2.1"
   }
 }
