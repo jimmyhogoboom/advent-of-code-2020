@@ -1,4 +1,4 @@
-import fs from "fs";
+import printParts from "../util/printParts";
 
 function part1(lines) {
   let result = 0;
@@ -35,5 +35,5 @@ export default function day1(lines) {
   const p1 = part1(lines);
   const p2 = part2(lines);
 
-  return `Part 1: ${p1}\nPart 2: ${p2}`;
+  return printParts(p1, p2);
 }
