@@ -1,4 +1,4 @@
-import { getMatrix, getPosition, part1 } from "./day3";
+import { getMatrix, getPosition, part1, hitsInSlope, part2 } from "./day3";
 
 describe("day 3", () => {
   describe("getMatrix", () => {
@@ -26,8 +26,48 @@ describe("day 3", () => {
 
   describe("part 1", () => {
     test("gets hits", () => {
-      const lines = ["..##....", "..#..#.#", ".#....#."];
-      expect(part1(lines)).toBe(1);
+      const lines = [
+        "..##.......",
+        "#...#...#..",
+        ".#....#..#.",
+        "..#.#...#.#",
+        ".#...##..#.",
+        "..#.##.....",
+        ".#.#.#....#",
+        ".#........#",
+        "#.##...#...",
+        "#...##....#",
+        ".#..#...#.#",
+      ];
+      expect(part1(lines)).toBe(7);
+    });
+  });
+
+  describe("part 2", () => {
+    const lines = [
+      "..##.......",
+      "#...#...#..",
+      ".#....#..#.",
+      "..#.#...#.#",
+      ".#...##..#.",
+      "..#.##.....",
+      ".#.#.#....#",
+      ".#........#",
+      "#.##...#...",
+      "#...##....#",
+      ".#..#...#.#",
+    ];
+    test.each([
+      [1, 1, 2],
+      [3, 1, 7],
+      [5, 1, 3],
+      [7, 1, 4],
+      [1, 2, 2],
+    ])("gets hits", (x, y, hits) => {
+      expect(hitsInSlope(getMatrix(lines), [x, y])).toBe(hits);
+    });
+    test("multiplies correctly", () => {
+      expect(part2(lines)).toBe(336);
     });
   });
 });

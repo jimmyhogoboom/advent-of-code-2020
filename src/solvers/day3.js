@@ -19,17 +19,34 @@ function add([x1, y1], [x2, y2]) {
   return [x1 + x2, y1 + y2];
 }
 
-export function part1(lines) {
-  const matrix = getMatrix(lines);
+export function hitsInSlope(matrix, slope) {
   let pos = [0, 0];
 
   return matrix.reduce((a, c, i, array) => {
-    pos = add(pos, [3, 1]);
+    pos = add(pos, slope);
     return getPosition(array, pos) ? a + 1 : a;
   }, 0);
 }
 
-export function part2(lines) {}
+export function part1(lines) {
+  const matrix = getMatrix(lines);
+  return hitsInSlope(matrix, [3, 1]);
+}
+
+export function part2(lines) {
+  const matrix = getMatrix(lines);
+  const slopes = [
+    [1, 1],
+    [3, 1],
+    [5, 1],
+    [7, 1],
+    [1, 2],
+  ];
+
+  return slopes.reduce((a, c) => {
+    return hitsInSlope(matrix, c) * a;
+  }, 1);
+}
 
 export default function day2(lines) {
   return printParts(part1(lines), part2(lines));
