@@ -1,4 +1,4 @@
-import { getMatrix, getPosition } from "./day3";
+import { getMatrix, getPosition, part1 } from "./day3";
 
 describe("day 3", () => {
   describe("getMatrix", () => {
@@ -21,6 +21,13 @@ describe("day 3", () => {
       [10, 1, 1], // repeats to the right
     ])("gets position", (x, y, result) => {
       expect(getPosition(getMatrix(lines), [x, y])).toBe(result);
+    });
+  });
+
+  describe("part 1", () => {
+    test("gets hits", () => {
+      const lines = ["..##....", "..#..#.#", ".#....#."];
+      expect(part1(lines)).toBe(1);
     });
   });
 });

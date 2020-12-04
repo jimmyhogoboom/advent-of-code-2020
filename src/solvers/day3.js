@@ -7,12 +7,29 @@ export function getMatrix(lines) {
 export function getPosition(matrix, [x, y]) {
   const rowWidth = matrix[0].length;
   const adjustedX = x % rowWidth;
-  return matrix[y][adjustedX];
+  try {
+    const position = matrix[y][adjustedX];
+    return position;
+  } catch (err) {
+    return null;
+  }
 }
 
-function part1(lines) {}
+function add([x1, y1], [x2, y2]) {
+  return [x1 + x2, y1 + y2];
+}
 
-function part2(lines) {}
+export function part1(lines) {
+  const matrix = getMatrix(lines);
+  let pos = [0, 0];
+
+  return matrix.reduce((a, c, i, array) => {
+    pos = add(pos, [3, 1]);
+    return getPosition(array, pos) ? a + 1 : a;
+  }, 0);
+}
+
+export function part2(lines) {}
 
 export default function day2(lines) {
   return printParts(part1(lines), part2(lines));
