@@ -1,2 +1,2 @@
 Part 1: 6778
-Part 2: undefined
+Part 2: 3406
