@@ -1,4 +1,4 @@
-import { splitRow, getSeatId, getSeat } from './day5';
+import { splitRow, getSeatId, getSeat, part1, part2 } from './day5';
 
 describe('day 5', () => {
   describe('splitRow', () => {
@@ -36,6 +36,12 @@ describe('day 5', () => {
       ['BBFFBBFRLL', [102, 4]],
     ])('getSeat', (code, position) => {
       expect(getSeat(code)).toStrictEqual(position);
+    });
+  });
+
+  describe('part1', () => {
+    test('part1', () => {
+      expect(part1(['BFFFBBFRRR', 'FFFBBBFRRR', 'BBFFBBFRLL'])).toBe(820);
     });
   });
 });

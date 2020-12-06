@@ -22,11 +22,12 @@ export function getSeatId(row, column) {
 export function getSeat(code) {
   function getPosition(codePart, [min, max]) {
     const newPos = splitRow(min, max, codePart[0]);
-    if (!Array.isArray(newPos) || codePart.length < 1) return newPos;
+    if (!Array.isArray(newPos)) return newPos;
     return getPosition(codePart.slice(1, codePart.length), newPos);
   }
 
   const matches = code.match(/([BF]*)([LR]+)/);
+
   const rows = matches[1];
   const columns = matches[2];
 
@@ -36,7 +37,9 @@ export function getSeat(code) {
   return [row, column];
 }
 
-export function part1() {}
+export function part1(lines) {
+  return Math.max(...lines.map((l) => getSeatId(...getSeat(l))));
+}
 
 export function part2() {}
 
