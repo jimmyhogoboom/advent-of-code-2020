@@ -1,4 +1,4 @@
-import { splitRow, getSeatId, getSeat, part1, part2 } from './day5';
+import { splitRow, getSeatId, getSeat, part1 } from './day5';
 
 describe('day 5', () => {
   describe('splitRow', () => {
