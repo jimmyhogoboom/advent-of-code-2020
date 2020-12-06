@@ -44,5 +44,6 @@ export function part1(lines) {
 export function part2() {}
 
 export default function day5(lines) {
-  return printParts(part1(lines), part2(lines));
+  const cleanedLines = lines.filter(Boolean);
+  return printParts(part1(cleanedLines), part2(cleanedLines));
 }
