@@ -41,7 +41,17 @@ export function part1(lines) {
   return Math.max(...lines.map((l) => getSeatId(...getSeat(l))));
 }
 
-export function part2() {}
+export function part2(lines) {
+  const seatIds = lines
+    .map((l) => getSeatId(...getSeat(l)))
+    .sort((a, b) => a - b);
+
+  for (let i = 1; i < seatIds.length; i += 1) {
+    if (seatIds[i] - seatIds[i - 1] != 1) {
+      return seatIds[i] - 1;
+    }
+  }
+}
 
 export default function day5(lines) {
   const cleanedLines = lines.filter(Boolean);
