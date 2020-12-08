@@ -1,4 +1,4 @@
-import { createBag, doesBagHoldBag, findBag, getBags } from './day7';
+import { createBag, doesBagHoldBag, findBag, getBags, part1 } from './day7';
 
 describe('day 7', () => {
   test.each([
@@ -71,19 +71,19 @@ describe('day 7', () => {
     expect(doesBagHoldBag(bags, bag, 'shiny gold')).toBe(result);
   });
 
-  test('finds bag', () => {
-    const lines = [
-      'light red bags contain 1 bright white bag, 2 muted yellow bags.',
-      'dark orange bags contain 3 bright white bags, 4 muted yellow bags.',
-      'bright white bags contain 1 shiny gold bag.',
-      'muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.',
-      'shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.',
-      'dark olive bags contain 3 faded blue bags, 4 dotted black bags.',
-      'vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.',
-      'faded blue bags contain no other bags.',
-      'dotted black bags contain no other bags.',
-    ];
+  const lines = [
+    'light red bags contain 1 bright white bag, 2 muted yellow bags.',
+    'dark orange bags contain 3 bright white bags, 4 muted yellow bags.',
+    'bright white bags contain 1 shiny gold bag.',
+    'muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.',
+    'shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.',
+    'dark olive bags contain 3 faded blue bags, 4 dotted black bags.',
+    'vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.',
+    'faded blue bags contain no other bags.',
+    'dotted black bags contain no other bags.',
+  ];
 
+  test('finds bag', () => {
     const bags = getBags(lines);
 
     expect(findBag(bags, 'shiny gold')).toStrictEqual([
@@ -92,5 +92,9 @@ describe('day 7', () => {
       'bright white',
       'muted yellow',
     ]);
+  });
+
+  test('part 1', () => {
+    expect(part1(lines, 'shiny gold')).toBe(4);
   });
 });

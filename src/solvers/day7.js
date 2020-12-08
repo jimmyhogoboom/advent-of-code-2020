@@ -1,5 +1,7 @@
 // bag: { color: '', contains: [ { count: 1, color: 'bright white' }, ] }
 
+import printParts from '../util/printParts';
+
 export function createBag(line) {
   const ruleParts = line.split(' bags contain ');
   const bag = { color: ruleParts[0], contains: [] };
@@ -15,14 +17,13 @@ export function createBag(line) {
 }
 
 export function getBags(lines) {
-  return lines.map(createBag);
+  return lines.filter(Boolean).map(createBag);
 }
 
 export function doesBagHoldBag(bags, bag, target) {
   const firstBag = bags.find((b) => b.color === bag);
 
   function search(searchBag, target) {
-    // console.log(bag, searchBag);
     if (searchBag.contains.some((b) => b.color === target)) return true;
 
     for (let b = 0; b < searchBag.contains.length; b += 1) {
@@ -34,13 +35,21 @@ export function doesBagHoldBag(bags, bag, target) {
     return false;
   }
 
-  console.log('searching: ', bag, firstBag);
   return search(firstBag, target);
 }
 
 export function findBag(bags, targetBag) {
-  console.log('BAGS: ', bags);
   return bags
     .filter((b) => doesBagHoldBag(bags, b.color, targetBag))
     .map((b) => b.color);
+}
+
+export function part1(lines) {
+  return findBag(getBags(lines), 'shiny gold').length;
+}
+
+export function part2(lines) {}
+
+export default function day6(lines) {
+  return printParts(part1(lines), part2(lines));
 }
