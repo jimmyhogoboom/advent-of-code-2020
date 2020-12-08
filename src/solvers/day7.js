@@ -21,47 +21,26 @@ export function getBags(lines) {
 export function doesBagHoldBag(bags, bag, target) {
   const firstBag = bags.find((b) => b.color === bag);
 
-  function search(bag, target) {
-    if (bag.color === target || bag.contains.some((b) => b.color === target))
-      return true;
+  function search(searchBag, target) {
+    // console.log(bag, searchBag);
+    if (searchBag.contains.some((b) => b.color === target)) return true;
 
-    for (let b = 0; b < bag.contains.length; b += 1) {
-      let nextBag = bags.find((x) => x.color === bag.contains[b].color);
+    for (let b = 0; b < searchBag.contains.length; b += 1) {
+      let nextBag = bags.find((x) => x.color === searchBag.contains[b].color);
+      if (!nextBag) continue;
       if (search(nextBag, target)) return true;
     }
 
     return false;
   }
 
+  console.log('searching: ', bag, firstBag);
   return search(firstBag, target);
 }
 
 export function findBag(bags, targetBag) {
-  const finds = [];
-
-  function dive(bag, target) {
-    if (bag.color === target) return true;
-    if (!bag.contains) return false;
-
-    if (bag.contains.some((b) => dive(b, target))) {
-      finds.push(bag.color);
-    }
-  }
-
-  // dive(bags[0], targetBag);
-
-  function search(bag, target) {
-    if (!bag.contains) return;
-
-    if (bag.contains.some((b) => b.color === target)) {
-      finds.push(bag.color);
-    } else {
-      const newBag = (c) => bags.find((b) => c.color === b.color);
-      bag.contains.forEach((b) => search(newBag(b), target));
-    }
-  }
-
-  search({ contains: bags });
-
-  return finds;
+  console.log('BAGS: ', bags);
+  return bags
+    .filter((b) => doesBagHoldBag(bags, b.color, targetBag))
+    .map((b) => b.color);
 }

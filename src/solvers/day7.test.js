@@ -71,7 +71,7 @@ describe('day 7', () => {
     expect(doesBagHoldBag(bags, bag, 'shiny gold')).toBe(result);
   });
 
-  test.skip('finds bag', () => {
+  test('finds bag', () => {
     const lines = [
       'light red bags contain 1 bright white bag, 2 muted yellow bags.',
       'dark orange bags contain 3 bright white bags, 4 muted yellow bags.',
@@ -88,9 +88,9 @@ describe('day 7', () => {
 
     expect(findBag(bags, 'shiny gold')).toStrictEqual([
       'light red',
+      'dark orange',
       'bright white',
       'muted yellow',
-      'dark orange',
     ]);
   });
 });
